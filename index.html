@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tigernut Productions | Artistas & Tours</title>
+    <title>Tigernut Productions | Artists & Tours</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -167,6 +167,19 @@
             0%, 100% { height: 20px; }
             50% { height: 60px; }
         }
+        
+        .lang-btn {
+            transition: all 0.3s ease;
+            opacity: 0.6;
+        }
+        .lang-btn:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        .lang-btn.active {
+            opacity: 1;
+            border-bottom: 2px solid var(--neon-purple);
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-purple-500 selection:text-white">
@@ -183,12 +196,18 @@
             </div>
             
             <div class="hidden md:flex space-x-8 items-center">
-                <a href="#artists" class="text-sm uppercase tracking-widest hover:text-purple-400 transition-colors magnetic-btn">Artistas</a>
-                <a href="#services" class="text-sm uppercase tracking-widest hover:text-purple-400 transition-colors magnetic-btn">Servicios</a>
-                <a href="#tours" class="text-sm uppercase tracking-widest hover:text-purple-400 transition-colors magnetic-btn">Tours</a>
-                <a href="#contact" class="px-6 py-2 border border-white/20 rounded-full text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-all magnetic-btn">
+                <a href="#artists" class="text-sm uppercase tracking-widest hover:text-purple-400 transition-colors magnetic-btn" data-i18n="nav_artists">Artistas</a>
+                <a href="#services" class="text-sm uppercase tracking-widest hover:text-purple-400 transition-colors magnetic-btn" data-i18n="nav_services">Servicios</a>
+                <a href="#tours" class="text-sm uppercase tracking-widest hover:text-purple-400 transition-colors magnetic-btn" data-i18n="nav_tours">Tours</a>
+                <a href="#contact" class="px-6 py-2 border border-white/20 rounded-full text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-all magnetic-btn" data-i18n="nav_contact">
                     Contacto
                 </a>
+                
+                <!-- BOTONES DE IDIOMA -->
+                <div class="flex items-center gap-3 ml-4 border-l border-white/20 pl-6">
+                    <button onclick="setLanguage('es')" class="lang-btn active text-2xl" id="btn-es" title="Español">🇪🇸</button>
+                    <button onclick="setLanguage('en')" class="lang-btn text-2xl" id="btn-en" title="English">🇬🇧</button>
+                </div>
             </div>
             
             <button class="md:hidden text-white" id="menuBtn">
@@ -200,10 +219,16 @@
     </nav>
 
     <div id="mobileMenu" class="fixed inset-0 bg-black z-40 transform translate-x-full transition-transform duration-500 flex flex-col justify-center items-center space-y-8">
-        <a href="#artists" class="text-3xl font-display font-bold hover:text-purple-400 transition-colors mobile-link">Artistas</a>
-        <a href="#services" class="text-3xl font-display font-bold hover:text-purple-400 transition-colors mobile-link">Servicios</a>
-        <a href="#tours" class="text-3xl font-display font-bold hover:text-purple-400 transition-colors mobile-link">Tours</a>
-        <a href="#contact" class="text-3xl font-display font-bold hover:text-purple-400 transition-colors mobile-link">Contacto</a>
+        <a href="#artists" class="text-3xl font-display font-bold hover:text-purple-400 transition-colors mobile-link" data-i18n="nav_artists">Artistas</a>
+        <a href="#services" class="text-3xl font-display font-bold hover:text-purple-400 transition-colors mobile-link" data-i18n="nav_services">Servicios</a>
+        <a href="#tours" class="text-3xl font-display font-bold hover:text-purple-400 transition-colors mobile-link" data-i18n="nav_tours">Tours</a>
+        <a href="#contact" class="text-3xl font-display font-bold hover:text-purple-400 transition-colors mobile-link" data-i18n="nav_contact">Contacto</a>
+        
+        <!-- BOTONES DE IDIOMA MÓVIL -->
+        <div class="flex gap-4 mt-8">
+            <button onclick="setLanguage('es')" class="lang-btn active text-4xl" id="btn-es-mobile" title="Español">🇪🇸</button>
+            <button onclick="setLanguage('en')" class="lang-btn text-4xl" id="btn-en-mobile" title="English">🇬🇧</button>
+        </div>
     </div>
 
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -222,21 +247,21 @@
             </div>
             
             <h1 class="text-6xl md:text-8xl lg:text-9xl font-display font-bold mb-6 leading-none tracking-tighter">
-                <span class="block glitch" data-text="GESTIONAMOS">GESTIONAMOS</span>
-                <span class="block gradient-text-accent">EL FUTURO</span>
-                <span class="block text-4xl md:text-6xl lg:text-7xl mt-4 font-light">DE LA MÚSICA</span>
+                <span class="block glitch" data-text="GESTIONAMOS" data-i18n="hero_line1">GESTIONAMOS</span>
+                <span class="block gradient-text-accent" data-i18n="hero_line2">EL FUTURO</span>
+                <span class="block text-4xl md:text-6xl lg:text-7xl mt-4 font-light" data-i18n="hero_line3">DE LA MÚSICA</span>
             </h1>
             
-            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 font-light tracking-wide opacity-0" id="heroSubtext">
+            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 font-light tracking-wide opacity-0" id="heroSubtext" data-i18n="hero_subtext">
                 Management integral para artistas visionarios. Conectamos talento excepcional con audiencias globales.
             </p>
             
             <div class="flex flex-col md:flex-row gap-4 justify-center items-center opacity-0" id="heroButtons">
                 <a href="#artists" class="group relative px-8 py-4 bg-white text-black font-bold rounded-full overflow-hidden magnetic-btn">
-                    <span class="relative z-10">Descubrir Artistas</span>
+                    <span class="relative z-10" data-i18n="hero_cta1">Descubrir Artistas</span>
                     <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-blue-400 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 </a>
-                <a href="#contact" class="px-8 py-4 border border-white/30 rounded-full hover:bg-white/10 transition-all magnetic-btn">
+                <a href="#contact" class="px-8 py-4 border border-white/30 rounded-full hover:bg-white/10 transition-all magnetic-btn" data-i18n="hero_cta2">
                     Trabaja con Nosotros
                 </a>
             </div>
@@ -251,7 +276,7 @@
 
     <div class="py-8 border-y border-white/10 bg-black/50 backdrop-blur-sm">
         <div class="marquee-container">
-            <div class="marquee-content text-4xl md:text-6xl font-display font-bold text-white/10">
+            <div class="marquee-content text-4xl md:text-6xl font-display font-bold text-white/10" data-i18n="marquee">
                 MANAGEMENT • BOOKING • PRODUCCIÓN • TOURS • ESTRATEGIA DIGITAL • BRANDING • MANAGEMENT • BOOKING • PRODUCCIÓN • TOURS • ESTRATEGIA DIGITAL • BRANDING •
             </div>
         </div>
@@ -261,12 +286,12 @@
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16">
                 <div>
-                    <h2 class="text-5xl md:text-7xl font-display font-bold mb-4 gradient-text">Nuestros<br>Artistas</h2>
-                    <p class="text-gray-400 max-w-md">Representamos a los talentos más innovadores de la escena musical contemporánea.</p>
+                    <h2 class="text-5xl md:text-7xl font-display font-bold mb-4 gradient-text" data-i18n="artists_title">Nuestros<br>Artistas</h2>
+                    <p class="text-gray-400 max-w-md" data-i18n="artists_subtitle">Representamos a los talentos más innovadores de la escena musical contemporánea.</p>
                 </div>
                 <div class="mt-6 md:mt-0">
                     <a href="#" class="text-purple-400 hover:text-white transition-colors flex items-center gap-2 group">
-                        Ver todos 
+                        <span data-i18n="view_all">Ver todos</span>
                         <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                         </svg>
@@ -277,36 +302,45 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="artist-card group relative h-[500px] rounded-2xl overflow-hidden cursor-pointer" onclick="openModal('New Bop')">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
-                    <img src="https://github.com/tigernutproductions/tigernutproductions/blob/main/NEW%20BOP_LOGO.PNG?raw=true" alt="New Bop" class="artist-image absolute inset-0 w-full h-full object-cover transition-transform duration-700">
+                    <img src="https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/NEW%20BOP_LOGO.PNG" alt="New Bop" class="artist-image absolute inset-0 w-full h-full object-contain bg-black transition-transform duration-700">
                     <div class="absolute bottom-0 left-0 p-8 z-20 w-full">
                         <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            <span class="text-purple-400 text-sm uppercase tracking-widest mb-2 block">Stright Ahead</span>
+                            <span class="text-purple-400 text-sm uppercase tracking-widest mb-2 block">Straight Ahead</span>
                             <h3 class="text-3xl font-display font-bold mb-2">New Bop</h3>
-                            <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">2.5M seguidores • 150 shows/año<br><span class="text-purple-400">Click para Press Kit →</span></p>
+                            <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                                <span data-i18n="followers">2.5M seguidores</span> • <span data-i18n="shows_year">150 shows/año</span><br>
+                                <span class="text-purple-400" data-i18n="click_presskit">Click para Press Kit →</span>
+                            </p>
                         </div>
                     </div>
                 </div>
 
                 <div class="artist-card group relative h-[500px] rounded-2xl overflow-hidden cursor-pointer" onclick="openModal('Latin Swing')">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
-                    <img src="https://github.com/tigernutproductions/tigernutproductions/blob/main/latin%20swing%20logo1_v-n.png?raw=true" alt="Latin Swing" class="artist-image absolute inset-0 w-full h-full object-contain bg-black transition-transform duration-700">
+                    <img src="https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/latin%20swing%20logo1_v-n.png" alt="Latin Swing" class="artist-image absolute inset-0 w-full h-full object-contain bg-black transition-transform duration-700">
                     <div class="absolute bottom-0 left-0 p-8 z-20 w-full">
                         <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                             <span class="text-blue-400 text-sm uppercase tracking-widest mb-2 block">Latin Jazz</span>
                             <h3 class="text-3xl font-display font-bold mb-2">Latin Swing</h3>
-                            <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">1.8M seguidores • Gira mundial 2024<br><span class="text-blue-400">Click para Press Kit →</span></p>
+                            <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                                <span data-i18n="followers">1.8M seguidores</span> • <span data-i18n="world_tour">Gira mundial 2024</span><br>
+                                <span class="text-blue-400" data-i18n="click_presskit">Click para Press Kit →</span>
+                            </p>
                         </div>
                     </div>
                 </div>
 
                 <div class="artist-card group relative h-[500px] rounded-2xl overflow-hidden cursor-pointer" onclick="openModal('The Brotherhood')">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
-                    <img src="https://github.com/tigernutproductions/tigernutproductions/blob/main/Bortherhood%20logo.png?raw=true" alt="The Brotherhood" class="artist-image absolute inset-0 w-full h-full object-contain bg-black transition-transform duration-700">
+                    <img src="https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/Bortherhood%20logo.png" alt="The Brotherhood" class="artist-image absolute inset-0 w-full h-full object-contain bg-black transition-transform duration-700">
                     <div class="absolute bottom-0 left-0 p-8 z-20 w-full">
                         <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            <span class="text-pink-400 text-sm uppercase tracking-widest mb-2 block">events</span>
+                            <span class="text-pink-400 text-sm uppercase tracking-widest mb-2 block">Events</span>
                             <h3 class="text-3xl font-display font-bold mb-2">The Brotherhood</h3>
-                            <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">3.2M seguidores • Grammy nominada<br><span class="text-pink-400">Click para Press Kit →</span></p>
+                            <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                                <span data-i18n="followers">3.2M seguidores</span> • <span data-i18n="grammy_nom">Grammy nominada</span><br>
+                                <span class="text-pink-400" data-i18n="click_presskit">Click para Press Kit →</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -320,8 +354,8 @@
         <div class="max-w-7xl mx-auto relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div>
-                    <h2 class="text-5xl md:text-6xl font-display font-bold mb-8 gradient-text">Servicios<br>Integrales</h2>
-                    <p class="text-gray-400 text-lg mb-12 leading-relaxed">
+                    <h2 class="text-5xl md:text-6xl font-display font-bold mb-8 gradient-text" data-i18n="services_title">Servicios<br>Integrales</h2>
+                    <p class="text-gray-400 text-lg mb-12 leading-relaxed" data-i18n="services_subtitle">
                         Ofrecemos un ecosistema completo para el desarrollo de carreras artísticas. Desde la estrategia creativa hasta la ejecución logística de tours mundiales.
                     </p>
                     
@@ -334,8 +368,8 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-xl font-bold mb-2 group-hover:text-purple-400 transition-colors">Management Artístico</h3>
-                                    <p class="text-gray-400 text-sm">Desarrollo de carrera, negociación de contratos y estrategia a largo plazo.</p>
+                                    <h3 class="text-xl font-bold mb-2 group-hover:text-purple-400 transition-colors" data-i18n="service1_title">Management Artístico</h3>
+                                    <p class="text-gray-400 text-sm" data-i18n="service1_desc">Desarrollo de carrera, negociación de contratos y estrategia a largo plazo.</p>
                                 </div>
                             </div>
                         </div>
@@ -348,8 +382,8 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors">Booking Global</h3>
-                                    <p class="text-gray-400 text-sm">Red de contactos internacionales para festivales, venues y eventos corporativos.</p>
+                                    <h3 class="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors" data-i18n="service2_title">Booking Global</h3>
+                                    <p class="text-gray-400 text-sm" data-i18n="service2_desc">Red de contactos internacionales para festivales, venues y eventos corporativos.</p>
                                 </div>
                             </div>
                         </div>
@@ -362,8 +396,8 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-xl font-bold mb-2 group-hover:text-pink-400 transition-colors">Producción de Contenido</h3>
-                                    <p class="text-gray-400 text-sm">Videos musicales, fotografía de marca y contenido digital estratégico.</p>
+                                    <h3 class="text-xl font-bold mb-2 group-hover:text-pink-400 transition-colors" data-i18n="service3_title">Producción de Contenido</h3>
+                                    <p class="text-gray-400 text-sm" data-i18n="service3_desc">Videos musicales, fotografía de marca y contenido digital estratégico.</p>
                                 </div>
                             </div>
                         </div>
@@ -377,11 +411,11 @@
                     </div>
                     <div class="absolute -bottom-6 -left-6 bg-black border border-white/20 p-6 rounded-xl backdrop-blur-md">
                         <div class="text-3xl font-bold gradient-text-accent">150+</div>
-                        <div class="text-sm text-gray-400">Shows producidos</div>
+                        <div class="text-sm text-gray-400" data-i18n="shows_produced">Shows producidos</div>
                     </div>
                     <div class="absolute -top-6 -right-6 bg-black border border-white/20 p-6 rounded-xl backdrop-blur-md">
                         <div class="text-3xl font-bold gradient-text-accent">12</div>
-                        <div class="text-sm text-gray-400">Países activos</div>
+                        <div class="text-sm text-gray-400" data-i18n="active_countries">Países activos</div>
                     </div>
                 </div>
             </div>
@@ -390,7 +424,7 @@
 
     <section id="tours" class="py-32 px-6">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-5xl md:text-6xl font-display font-bold mb-16 text-center gradient-text">Próximos Tours</h2>
+            <h2 class="text-5xl md:text-6xl font-display font-bold mb-16 text-center gradient-text" data-i18n="tours_title">Próximos Tours</h2>
             
             <div class="space-y-4">
                 <div class="group relative bg-zinc-900/50 border border-white/5 rounded-2xl p-8 hover:bg-zinc-800/50 transition-all cursor-pointer overflow-hidden">
@@ -399,14 +433,14 @@
                         <div class="flex items-center gap-6">
                             <div class="text-center min-w-[80px]">
                                 <div class="text-3xl font-bold text-purple-400">24</div>
-                                <div class="text-sm text-gray-400 uppercase">Mar</div>
+                                <div class="text-sm text-gray-400 uppercase" data-i18n="month_mar">Mar</div>
                             </div>
                             <div>
                                 <h3 class="text-2xl font-bold mb-1 group-hover:text-purple-400 transition-colors">New Bop World Tour</h3>
-                                <p class="text-gray-400">Madrid, Barcelona, Valencia • 12 ciudades</p>
+                                <p class="text-gray-400">Madrid, Barcelona, Valencia • 12 <span data-i18n="cities">ciudades</span></p>
                             </div>
                         </div>
-                        <button class="px-6 py-3 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all text-sm uppercase tracking-wider">
+                        <button class="px-6 py-3 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all text-sm uppercase tracking-wider" data-i18n="tickets">
                             Entradas
                         </button>
                     </div>
@@ -418,14 +452,14 @@
                         <div class="flex items-center gap-6">
                             <div class="text-center min-w-[80px]">
                                 <div class="text-3xl font-bold text-blue-400">15</div>
-                                <div class="text-sm text-gray-400 uppercase">Abr</div>
+                                <div class="text-sm text-gray-400 uppercase" data-i18n="month_apr">Abr</div>
                             </div>
                             <div>
                                 <h3 class="text-2xl font-bold mb-1 group-hover:text-blue-400 transition-colors">Latin Swing Festival Tour</h3>
                                 <p class="text-gray-400">Primavera Sound, Mad Cool, BBK Live</p>
                             </div>
                         </div>
-                        <button class="px-6 py-3 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all text-sm uppercase tracking-wider">
+                        <button class="px-6 py-3 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all text-sm uppercase tracking-wider" data-i18n="tickets">
                             Entradas
                         </button>
                     </div>
@@ -437,14 +471,14 @@
                         <div class="flex items-center gap-6">
                             <div class="text-center min-w-[80px]">
                                 <div class="text-3xl font-bold text-pink-400">02</div>
-                                <div class="text-sm text-gray-400 uppercase">May</div>
+                                <div class="text-sm text-gray-400 uppercase" data-i18n="month_may">May</div>
                             </div>
                             <div>
                                 <h3 class="text-2xl font-bold mb-1 group-hover:text-pink-400 transition-colors">The Brotherhood Acoustic Sessions</h3>
-                                <p class="text-gray-400">Teatros nacionales • Gira íntima</p>
+                                <p class="text-gray-400"><span data-i18n="national_theaters">Teatros nacionales</span> • <span data-i18n="intimate_tour">Gira íntima</span></p>
                             </div>
                         </div>
-                        <button class="px-6 py-3 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all text-sm uppercase tracking-wider">
+                        <button class="px-6 py-3 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all text-sm uppercase tracking-wider" data-i18n="tickets">
                             Entradas
                         </button>
                     </div>
@@ -458,15 +492,15 @@
         
         <div class="max-w-4xl mx-auto relative z-10">
             <div class="text-center mb-16">
-                <h2 class="text-5xl md:text-6xl font-display font-bold mb-6 gradient-text">¿Hablamos?</h2>
-                <p class="text-gray-400 text-lg">Estamos buscando el siguiente gran talento. Cuéntanos sobre tu proyecto.</p>
+                <h2 class="text-5xl md:text-6xl font-display font-bold mb-6 gradient-text" data-i18n="contact_title">¿Hablamos?</h2>
+                <p class="text-gray-400 text-lg" data-i18n="contact_subtitle">Estamos buscando el siguiente gran talento. Cuéntanos sobre tu proyecto.</p>
             </div>
 
             <form class="space-y-6" id="contactForm">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="relative group">
                         <input type="text" id="name" required class="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-purple-500 transition-colors peer placeholder-transparent">
-                        <label for="name" class="absolute left-6 top-4 text-gray-400 transition-all peer-focus:-top-2 peer-focus:text-xs peer-focus:text-purple-400 peer-focus:bg-black peer-focus:px-2 peer-not-placeholder-shown:-top-2 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:bg-black peer-not-placeholder-shown:px-2">Nombre</label>
+                        <label for="name" class="absolute left-6 top-4 text-gray-400 transition-all peer-focus:-top-2 peer-focus:text-xs peer-focus:text-purple-400 peer-focus:bg-black peer-focus:px-2 peer-not-placeholder-shown:-top-2 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:bg-black peer-not-placeholder-shown:px-2" data-i18n="label_name">Nombre</label>
                     </div>
                     <div class="relative group">
                         <input type="email" id="email" required class="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-purple-500 transition-colors peer placeholder-transparent">
@@ -476,11 +510,11 @@
                 
                 <div class="relative group">
                     <select id="subject" class="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-purple-500 transition-colors appearance-none cursor-pointer">
-                        <option value="" disabled selected class="bg-zinc-900">¿Sobre qué quieres hablar?</option>
-                        <option value="management" class="bg-zinc-900">Management Artístico</option>
-                        <option value="booking" class="bg-zinc-900">Booking / Contratación</option>
-                        <option value="press" class="bg-zinc-900">Prensa & Medios</option>
-                        <option value="other" class="bg-zinc-900">Otro</option>
+                        <option value="" disabled selected class="bg-zinc-900" data-i18n="select_topic">¿Sobre qué quieres hablar?</option>
+                        <option value="management" class="bg-zinc-900" data-i18n="opt_management">Management Artístico</option>
+                        <option value="booking" class="bg-zinc-900" data-i18n="opt_booking">Booking / Contratación</option>
+                        <option value="press" class="bg-zinc-900" data-i18n="opt_press">Prensa & Medios</option>
+                        <option value="other" class="bg-zinc-900" data-i18n="opt_other">Otro</option>
                     </select>
                     <div class="absolute right-6 top-1/2 transform -translate-y-1/2 pointer-events-none">
                         <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -491,10 +525,10 @@
 
                 <div class="relative group">
                     <textarea id="message" rows="5" required class="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-purple-500 transition-colors peer placeholder-transparent resize-none"></textarea>
-                    <label for="message" class="absolute left-6 top-4 text-gray-400 transition-all peer-focus:-top-2 peer-focus:text-xs peer-focus:text-purple-400 peer-focus:bg-black peer-focus:px-2 peer-not-placeholder-shown:-top-2 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:bg-black peer-not-placeholder-shown:px-2">Tu mensaje</label>
+                    <label for="message" class="absolute left-6 top-4 text-gray-400 transition-all peer-focus:-top-2 peer-focus:text-xs peer-focus:text-purple-400 peer-focus:bg-black peer-focus:px-2 peer-not-placeholder-shown:-top-2 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:bg-black peer-not-placeholder-shown:px-2" data-i18n="label_message">Tu mensaje</label>
                 </div>
 
-                <button type="submit" class="w-full py-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity transform hover:scale-[1.02] duration-300">
+                <button type="submit" class="w-full py-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity transform hover:scale-[1.02] duration-300" data-i18n="btn_send">
                     Enviar Mensaje
                 </button>
             </form>
@@ -505,8 +539,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                     </svg>
                 </div>
-                <h3 class="text-2xl font-bold mb-2">¡Mensaje enviado!</h3>
-                <p class="text-gray-400">Nos pondremos en contacto contigo pronto.</p>
+                <h3 class="text-2xl font-bold mb-2" data-i18n="msg_sent">¡Mensaje enviado!</h3>
+                <p class="text-gray-400" data-i18n="msg_contact">Nos pondremos en contacto contigo pronto.</p>
             </div>
         </div>
     </section>
@@ -528,28 +562,24 @@
             </div>
             
             <div class="text-gray-500 text-sm">
-                © 2026 Tigernut Productions. Todos los derechos reservados.
+                © 2026 Tigernut Productions. <span data-i18n="rights">Todos los derechos reservados.</span>
             </div>
         </div>
     </footer>
 
-    <!-- MODAL PRESS KIT - AQUÍ EMPIEZA EL CÓDIGO DEL MODAL -->
+    <!-- MODAL PRESS KIT -->
     <div id="pressModal" class="fixed inset-0 z-[100] hidden">
-        <!-- Fondo oscuro -->
         <div class="absolute inset-0 bg-black/90 backdrop-blur-sm" onclick="closeModal()"></div>
         
-        <!-- Contenedor del modal -->
         <div class="relative z-10 flex items-center justify-center min-h-screen p-4">
             <div class="bg-zinc-900 border border-white/20 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative">
                 
-                <!-- Botón cerrar -->
                 <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors z-50">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                     </svg>
                 </button>
                 
-                <!-- Contenido dinámico -->
                 <div id="modalContent" class="p-8 md:p-12">
                     <!-- Se rellena con JavaScript -->
                 </div>
@@ -557,14 +587,180 @@
         </div>
     </div>
 
+    <!-- SISTEMA DE TRADUCCIÓN -->
+    <script>
+    // DICCIONARIO DE TRADUCCIONES
+    const translations = {
+        es: {
+            nav_artists: "Artistas",
+            nav_services: "Servicios",
+            nav_tours: "Tours",
+            nav_contact: "Contacto",
+            hero_line1: "GESTIONAMOS",
+            hero_line2: "EL FUTURO",
+            hero_line3: "DE LA MÚSICA",
+            hero_subtext: "Management integral para artistas visionarios. Conectamos talento excepcional con audiencias globales.",
+            hero_cta1: "Descubrir Artistas",
+            hero_cta2: "Trabaja con Nosotros",
+            marquee: "MANAGEMENT • BOOKING • PRODUCCIÓN • TOURS • ESTRATEGIA DIGITAL • BRANDING • MANAGEMENT • BOOKING • PRODUCCIÓN • TOURS • ESTRATEGIA DIGITAL • BRANDING •",
+            artists_title: "Nuestros<br>Artistas",
+            artists_subtitle: "Representamos a los talentos más innovadores de la escena musical contemporánea.",
+            view_all: "Ver todos",
+            followers: "seguidores",
+            shows_year: "shows/año",
+            world_tour: "Gira mundial 2024",
+            grammy_nom: "Grammy nominada",
+            click_presskit: "Click para Press Kit →",
+            services_title: "Servicios<br>Integrales",
+            services_subtitle: "Ofrecemos un ecosistema completo para el desarrollo de carreras artísticas. Desde la estrategia creativa hasta la ejecución logística de tours mundiales.",
+            service1_title: "Management Artístico",
+            service1_desc: "Desarrollo de carrera, negociación de contratos y estrategia a largo plazo.",
+            service2_title: "Booking Global",
+            service2_desc: "Red de contactos internacionales para festivales, venues y eventos corporativos.",
+            service3_title: "Producción de Contenido",
+            service3_desc: "Videos musicales, fotografía de marca y contenido digital estratégico.",
+            shows_produced: "Shows producidos",
+            active_countries: "Países activos",
+            tours_title: "Próximos Tours",
+            month_mar: "Mar",
+            month_apr: "Abr",
+            month_may: "May",
+            cities: "ciudades",
+            national_theaters: "Teatros nacionales",
+            intimate_tour: "Gira íntima",
+            tickets: "Entradas",
+            contact_title: "¿Hablamos?",
+            contact_subtitle: "Estamos buscando el siguiente gran talento. Cuéntanos sobre tu proyecto.",
+            label_name: "Nombre",
+            select_topic: "¿Sobre qué quieres hablar?",
+            opt_management: "Management Artístico",
+            opt_booking: "Booking / Contratación",
+            opt_press: "Prensa & Medios",
+            opt_other: "Otro",
+            label_message: "Tu mensaje",
+            btn_send: "Enviar Mensaje",
+            msg_sent: "¡Mensaje enviado!",
+            msg_contact: "Nos pondremos en contacto contigo pronto.",
+            rights: "Todos los derechos reservados.",
+            bio: "Biografía",
+            press_material: "Material de Prensa",
+            presskit_pdf: "Press Kit Completo (PDF)",
+            presskit_desc: "Biografía, fotos y logos oficiales",
+            photos_hd: "Fotos en Alta Resolución (ZIP)",
+            photos_desc: "Fotos oficiales para prensa (300dpi)",
+            rider: "Rider Técnico (PDF)",
+            rider_desc: "Especificaciones técnicas para venues"
+        },
+        en: {
+            nav_artists: "Artists",
+            nav_services: "Services",
+            nav_tours: "Tours",
+            nav_contact: "Contact",
+            hero_line1: "WE MANAGE",
+            hero_line2: "THE FUTURE",
+            hero_line3: "OF MUSIC",
+            hero_subtext: "Comprehensive management for visionary artists. We connect exceptional talent with global audiences.",
+            hero_cta1: "Discover Artists",
+            hero_cta2: "Work With Us",
+            marquee: "MANAGEMENT • BOOKING • PRODUCTION • TOURS • DIGITAL STRATEGY • BRANDING • MANAGEMENT • BOOKING • PRODUCTION • TOURS • DIGITAL STRATEGY • BRANDING •",
+            artists_title: "Our<br>Artists",
+            artists_subtitle: "We represent the most innovative talents in the contemporary music scene.",
+            view_all: "View all",
+            followers: "followers",
+            shows_year: "shows/year",
+            world_tour: "World Tour 2024",
+            grammy_nom: "Grammy nominated",
+            click_presskit: "Click for Press Kit →",
+            services_title: "Comprehensive<br>Services",
+            services_subtitle: "We offer a complete ecosystem for artistic career development. From creative strategy to the logistical execution of world tours.",
+            service1_title: "Artist Management",
+            service1_desc: "Career development, contract negotiation and long-term strategy.",
+            service2_title: "Global Booking",
+            service2_desc: "International network for festivals, venues and corporate events.",
+            service3_title: "Content Production",
+            service3_desc: "Music videos, brand photography and strategic digital content.",
+            shows_produced: "Shows produced",
+            active_countries: "Active countries",
+            tours_title: "Upcoming Tours",
+            month_mar: "Mar",
+            month_apr: "Apr",
+            month_may: "May",
+            cities: "cities",
+            national_theaters: "National theaters",
+            intimate_tour: "Intimate tour",
+            tickets: "Tickets",
+            contact_title: "Let's Talk?",
+            contact_subtitle: "We're looking for the next big talent. Tell us about your project.",
+            label_name: "Name",
+            select_topic: "What would you like to talk about?",
+            opt_management: "Artist Management",
+            opt_booking: "Booking / Hiring",
+            opt_press: "Press & Media",
+            opt_other: "Other",
+            label_message: "Your message",
+            btn_send: "Send Message",
+            msg_sent: "Message sent!",
+            msg_contact: "We will contact you soon.",
+            rights: "All rights reserved.",
+            bio: "Biography",
+            press_material: "Press Material",
+            presskit_pdf: "Complete Press Kit (PDF)",
+            presskit_desc: "Biography, photos and official logos",
+            photos_hd: "High Resolution Photos (ZIP)",
+            photos_desc: "Official press photos (300dpi)",
+            rider: "Technical Rider (PDF)",
+            rider_desc: "Technical specifications for venues"
+        }
+    };
+
+    // Función para cambiar idioma
+    function setLanguage(lang) {
+        // Guardar preferencia
+        localStorage.setItem('language', lang);
+        
+        // Actualizar botones
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+        document.getElementById('btn-es-mobile').classList.toggle('active', lang === 'es');
+        document.getElementById('btn-en-mobile').classList.toggle('active', lang === 'en');
+        
+        // Actualizar textos
+        const texts = translations[lang];
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (texts[key]) {
+                if (element.innerHTML.includes('<br>')) {
+                    element.innerHTML = texts[key];
+                } else {
+                    element.textContent = texts[key];
+                }
+            }
+        });
+        
+        // Actualizar atributos glitch
+        const glitchElement = document.querySelector('.glitch');
+        if (glitchElement && texts.hero_line1) {
+            glitchElement.setAttribute('data-text', texts.hero_line1);
+        }
+    }
+
+    // Cargar idioma guardado o por defecto español
+    const savedLang = localStorage.getItem('language') || 'es';
+    setLanguage(savedLang);
+    </script>
+
     <script>
     // Datos de los press kits
     const pressKits = {
         'New Bop': {
             nombre: 'New Bop',
-            genero: 'Stright Ahead',
-            bio: 'Neon Pulse es un dúo electrónico formado en 2019 en Madrid. Con más de 2.5 millones de seguidores y 150 shows anuales, han liderado la escena synthwave iberoamericana.',
-            foto: 'https://github.com/tigernutproductions/tigernutproductions/blob/main/NEW%20BOP_LOGO.PNG?raw=true',
+            genero: 'Straight Ahead',
+            bio_es: 'New Bop es una banda de Straight Ahead formada en 2019 en Madrid. Con más de 2.5 millones de seguidores y 150 shows anuales, han liderado la escena jazzística iberoamericana.',
+            bio_en: 'New Bop is a Straight Ahead band formed in 2019 in Madrid. With over 2.5 million followers and 150 annual shows, they have led the Ibero-American jazz scene.',
+            foto: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/NEW%20BOP_LOGO.PNG',
             pressKit: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/New%20Bop%20Media%20Kit.pdf',
             fotosHD: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/fotos-neon-pulse.zip',
             rider: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/rider-neon-pulse.pdf',
@@ -573,9 +769,10 @@
         },
         'Latin Swing': {
             nombre: 'Latin Swing',
-            genero: 'Latin jazz',
-            bio: 'The Midnight combina guitarras distorsionadas con melodías dream pop. Ganadores del premio al mejor álbum indie 2023.',
-            foto: 'https://github.com/tigernutproductions/tigernutproductions/blob/main/latin%20swing%20logo1_v-n.png?raw=true',
+            genero: 'Latin Jazz',
+            bio_es: 'Latin Swing combina ritmos latinos con armonías jazzísticas. Ganadores del premio al mejor álbum de jazz latino 2023.',
+            bio_en: 'Latin Swing combines Latin rhythms with jazz harmonies. Winners of the Best Latin Jazz Album award 2023.',
+            foto: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/latin%20swing%20logo1_v-n.png',
             pressKit: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/Latinswing%20PMK.pdf',
             fotosHD: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/fotos-the-midnight.zip',
             rider: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/rider-the-midnight.pdf',
@@ -584,9 +781,10 @@
         },
         'The Brotherhood': {
             nombre: 'The Brotherhood',
-            genero: 'events',
-            bio: 'Voz prodigio del neo-soul español. Nominada a los Grammy Latinos 2024. Su single "Eclipse" superó los 50 millones de streams.',
-            foto: 'https://github.com/tigernutproductions/tigernutproductions/blob/main/Bortherhood%20logo.png?raw=true',
+            genero: 'Events',
+            bio_es: 'The Brotherhood es un colectivo de eventos musicales. Organizadores de festivales y conciertos con más de 3.2 millones de seguidores.',
+            bio_en: 'The Brotherhood is a musical events collective. Festival and concert organizers with over 3.2 million followers.',
+            foto: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/Bortherhood%20logo.png',
             pressKit: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/Latinswing%20PMK.pdf',
             fotosHD: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/fotos-luna-vega.zip',
             rider: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/rider-luna-vega.pdf',
@@ -599,11 +797,15 @@
         const artist = pressKits[artistId];
         if (!artist) return;
         
+        const lang = localStorage.getItem('language') || 'es';
+        const bio = lang === 'es' ? artist.bio_es : artist.bio_en;
+        const texts = translations[lang];
+        
         const content = document.getElementById('modalContent');
         content.innerHTML = `
             <div class="grid md:grid-cols-2 gap-8">
                 <div>
-                    <img src="${artist.foto}" alt="${artist.nombre}" class="w-full h-64 object-cover rounded-xl mb-6">
+                    <img src="${artist.foto}" alt="${artist.nombre}" class="w-full h-64 object-contain bg-black rounded-xl mb-6">
                     <h2 class="text-4xl font-display font-bold mb-2">${artist.nombre}</h2>
                     <p class="text-purple-400 text-lg mb-6">${artist.genero}</p>
                     
@@ -624,10 +826,10 @@
                 </div>
                 
                 <div>
-                    <h3 class="text-xl font-bold mb-4 text-purple-400">Biografía</h3>
-                    <p class="text-gray-300 leading-relaxed mb-8">${artist.bio}</p>
+                    <h3 class="text-xl font-bold mb-4 text-purple-400">${texts.bio}</h3>
+                    <p class="text-gray-300 leading-relaxed mb-8">${bio}</p>
                     
-                    <h3 class="text-xl font-bold mb-4 text-purple-400">Material de Prensa</h3>
+                    <h3 class="text-xl font-bold mb-4 text-purple-400">${texts.press_material}</h3>
                     <div class="space-y-3">
                         <a href="${artist.pressKit}" download class="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
                             <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -636,8 +838,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <div class="font-bold">Press Kit Completo (PDF)</div>
-                                <div class="text-sm text-gray-400">Biografía, fotos y logos oficiales</div>
+                                <div class="font-bold">${texts.presskit_pdf}</div>
+                                <div class="text-sm text-gray-400">${texts.presskit_desc}</div>
                             </div>
                         </a>
                         
@@ -648,8 +850,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <div class="font-bold">Fotos en Alta Resolución (ZIP)</div>
-                                <div class="text-sm text-gray-400">Fotos oficiales para prensa (300dpi)</div>
+                                <div class="font-bold">${texts.photos_hd}</div>
+                                <div class="text-sm text-gray-400">${texts.photos_desc}</div>
                             </div>
                         </a>
                         
@@ -660,8 +862,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <div class="font-bold">Rider Técnico (PDF)</div>
-                                <div class="text-sm text-gray-400">Especificaciones técnicas para venues</div>
+                                <div class="font-bold">${texts.rider}</div>
+                                <div class="text-sm text-gray-400">${texts.rider_desc}</div>
                             </div>
                         </a>
                     </div>
