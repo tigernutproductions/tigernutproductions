@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tigernut Productions | Artists & Tours</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -196,18 +197,18 @@
             </div>
             
             <div class="hidden md:flex space-x-8 items-center">
-                <a href="#artists" class="text-sm uppercase tracking-widest hover:text-purple-400 transition-colors magnetic-btn" data-i18n="nav_artists">Artistas</a>
-                <a href="#services" class="text-sm uppercase tracking-widest hover:text-purple-400 transition-colors magnetic-btn" data-i18n="nav_services">Servicios</a>
+                <a href="#artistas" class="text-sm uppercase tracking-widest hover:text-purple-400 transition-colors magnetic-btn" data-i18n="nav_artists">Artistas</a>
                 <a href="#tours" class="text-sm uppercase tracking-widest hover:text-purple-400 transition-colors magnetic-btn" data-i18n="nav_tours">Tours</a>
                 <a href="#contact" class="px-6 py-2 border border-white/20 rounded-full text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-all magnetic-btn" data-i18n="nav_contact">
                     Contacto
                 </a>
                 
-                <!-- BOTONES DE IDIOMA -->
-                <div class="flex items-center gap-3 ml-4 border-l border-white/20 pl-6">
-                    <button onclick="setLanguage('es')" class="lang-btn active text-2xl" id="btn-es" title="Español">🇪🇸</button>
-                    <button onclick="setLanguage('en')" class="lang-btn text-2xl" id="btn-en" title="English">🇬🇧</button>
-                </div>
+            </div>
+            
+            <!-- BOTONES DE IDIOMA (desktop) -->
+            <div class="hidden md:flex items-center gap-3 ml-4 border-l border-white/20 pl-6">
+                <button onclick="setLanguage('es')" class="lang-btn active text-2xl" id="btn-es" title="Español">🇪🇸</button>
+                <button onclick="setLanguage('en')" class="lang-btn text-2xl" id="btn-en" title="English">🇬🇧</button>
             </div>
             
             <button class="md:hidden text-white" id="menuBtn">
@@ -219,17 +220,16 @@
     </nav>
 
     <div id="mobileMenu" class="fixed inset-0 bg-black z-40 transform translate-x-full transition-transform duration-500 flex flex-col justify-center items-center space-y-8">
+        <!-- BOTONES DE IDIOMA MÓVIL (arriba derecha) -->
+        <div class="absolute top-6 right-20 flex gap-3">
+            <button onclick="setLanguage('es')" class="lang-btn active px-3 py-1 rounded-full border border-white/20 text-sm font-medium tracking-wider" id="btn-es-mobile" title="Español">ES</button>
+            <button onclick="setLanguage('en')" class="lang-btn px-3 py-1 rounded-full border border-white/20 text-sm font-medium tracking-wider" id="btn-en-mobile" title="English">EN</button>
+        </div>
         <a href="#artists" class="text-3xl font-display font-bold hover:text-purple-400 transition-colors mobile-link" data-i18n="nav_artists">Artistas</a>
-        <a href="#services" class="text-3xl font-display font-bold hover:text-purple-400 transition-colors mobile-link" data-i18n="nav_services">Servicios</a>
         <a href="#tours" class="text-3xl font-display font-bold hover:text-purple-400 transition-colors mobile-link" data-i18n="nav_tours">Tours</a>
         <a href="#contact" class="text-3xl font-display font-bold hover:text-purple-400 transition-colors mobile-link" data-i18n="nav_contact">Contacto</a>
         
-        <!-- BOTONES DE IDIOMA MÓVIL -->
-        <div class="flex gap-4 mt-8">
-            <button onclick="setLanguage('es')" class="lang-btn active text-4xl" id="btn-es-mobile" title="Español">🇪🇸</button>
-            <button onclick="setLanguage('en')" class="lang-btn text-4xl" id="btn-en-mobile" title="English">🇬🇧</button>
         </div>
-    </div>
 
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-blue-900/20"></div>
@@ -248,8 +248,8 @@
             
             <h1 class="text-6xl md:text-8xl lg:text-9xl font-display font-bold mb-6 leading-none tracking-tighter">
                 <span class="block glitch" data-text="GESTIONAMOS" data-i18n="hero_line1">GESTIONAMOS</span>
-                <span class="block gradient-text-accent" data-i18n="hero_line2">EL FUTURO</span>
-                <span class="block text-4xl md:text-6xl lg:text-7xl mt-4 font-light" data-i18n="hero_line3">DE LA MÚSICA</span>
+                <span class="block gradient-text-accent" data-i18n="hero_line2">TALENTO EMERGENTE</span>
+                <span class="block text-4xl md:text-6xl lg:text-7xl mt-4 font-light" data-i18n="hero_line3">EN LA MÚSICA CREATIVA</span>
             </h1>
             
             <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 font-light tracking-wide opacity-0" id="heroSubtext" data-i18n="hero_subtext">
@@ -265,13 +265,15 @@
                     Trabaja con Nosotros
                 </a>
             </div>
+            
+            <!-- SELECTOR DE IDIOMA EN HERO -->
+            <div class="mt-8 flex justify-center items-center gap-3 opacity-0" id="heroLangSwitcher">
+                <button onclick="setLanguage('es')" class="lang-btn active px-4 py-2 rounded-full border border-white/20 text-sm font-medium tracking-wider hover:bg-white/10 transition-all" id="btn-hero-es">ES</button>
+                <span class="text-white/30">|</span>
+                <button onclick="setLanguage('en')" class="lang-btn px-4 py-2 rounded-full border border-white/20 text-sm font-medium tracking-wider hover:bg-white/10 transition-all" id="btn-hero-en">EN</button>
+            </div>
         </div>
         
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <svg class="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-            </svg>
-        </div>
     </section>
 
     <div class="py-8 border-y border-white/10 bg-black/50 backdrop-blur-sm">
@@ -308,7 +310,6 @@
                             <span class="text-purple-400 text-sm uppercase tracking-widest mb-2 block">Straight Ahead</span>
                             <h3 class="text-3xl font-display font-bold mb-2">New Bop</h3>
                             <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                                <span data-i18n="followers">2.5M seguidores</span> • <span data-i18n="shows_year">150 shows/año</span><br>
                                 <span class="text-purple-400" data-i18n="click_presskit">Click para Press Kit →</span>
                             </p>
                         </div>
@@ -323,7 +324,6 @@
                             <span class="text-blue-400 text-sm uppercase tracking-widest mb-2 block">Latin Jazz</span>
                             <h3 class="text-3xl font-display font-bold mb-2">Latin Swing</h3>
                             <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                                <span data-i18n="followers">1.8M seguidores</span> • <span data-i18n="world_tour">Gira mundial 2024</span><br>
                                 <span class="text-blue-400" data-i18n="click_presskit">Click para Press Kit →</span>
                             </p>
                         </div>
@@ -338,7 +338,6 @@
                             <span class="text-pink-400 text-sm uppercase tracking-widest mb-2 block">Events</span>
                             <h3 class="text-3xl font-display font-bold mb-2">The Brotherhood</h3>
                             <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                                <span data-i18n="followers">3.2M seguidores</span> • <span data-i18n="grammy_nom">Grammy nominada</span><br>
                                 <span class="text-pink-400" data-i18n="click_presskit">Click para Press Kit →</span>
                             </p>
                         </div>
@@ -348,139 +347,23 @@
         </div>
     </section>
 
-    <section id="services" class="py-32 px-6 bg-zinc-950 relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-purple-900/10 to-transparent"></div>
-        
-        <div class="max-w-7xl mx-auto relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <h2 class="text-5xl md:text-6xl font-display font-bold mb-8 gradient-text" data-i18n="services_title">Servicios<br>Integrales</h2>
-                    <p class="text-gray-400 text-lg mb-12 leading-relaxed" data-i18n="services_subtitle">
-                        Ofrecemos un ecosistema completo para el desarrollo de carreras artísticas. Desde la estrategia creativa hasta la ejecución logística de tours mundiales.
-                    </p>
-                    
-                    <div class="space-y-6">
-                        <div class="service-item group p-6 border border-white/10 rounded-xl hover:border-purple-500/50 transition-all cursor-pointer bg-black/40 backdrop-blur-sm">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold mb-2 group-hover:text-purple-400 transition-colors" data-i18n="service1_title">Management Artístico</h3>
-                                    <p class="text-gray-400 text-sm" data-i18n="service1_desc">Desarrollo de carrera, negociación de contratos y estrategia a largo plazo.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="service-item group p-6 border border-white/10 rounded-xl hover:border-blue-500/50 transition-all cursor-pointer bg-black/40 backdrop-blur-sm">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors" data-i18n="service2_title">Booking Global</h3>
-                                    <p class="text-gray-400 text-sm" data-i18n="service2_desc">Red de contactos internacionales para festivales, venues y eventos corporativos.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="service-item group p-6 border border-white/10 rounded-xl hover:border-pink-500/50 transition-all cursor-pointer bg-black/40 backdrop-blur-sm">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 group-hover:scale-110 transition-transform">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-bold mb-2 group-hover:text-pink-400 transition-colors" data-i18n="service3_title">Producción de Contenido</h3>
-                                    <p class="text-gray-400 text-sm" data-i18n="service3_desc">Videos musicales, fotografía de marca y contenido digital estratégico.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="relative">
-                    <div class="aspect-square rounded-2xl overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1598387993441-a364f854c3e1?q=80&w=2076&auto=format&fit=crop" alt="Studio" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-purple-900/40 to-transparent"></div>
-                    </div>
-                    <div class="absolute -bottom-6 -left-6 bg-black border border-white/20 p-6 rounded-xl backdrop-blur-md">
-                        <div class="text-3xl font-bold gradient-text-accent">150+</div>
-                        <div class="text-sm text-gray-400" data-i18n="shows_produced">Shows producidos</div>
-                    </div>
-                    <div class="absolute -top-6 -right-6 bg-black border border-white/20 p-6 rounded-xl backdrop-blur-md">
-                        <div class="text-3xl font-bold gradient-text-accent">12</div>
-                        <div class="text-sm text-gray-400" data-i18n="active_countries">Países activos</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="tours" class="py-32 px-6">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-5xl md:text-6xl font-display font-bold mb-16 text-center gradient-text" data-i18n="tours_title">Próximos Tours</h2>
+            <h2 class="text-5xl md:text-6xl font-display font-bold mb-16 text-center gradient-text" data-i18n="tours_title">Tours</h2>
             
-            <div class="space-y-4">
-                <div class="group relative bg-zinc-900/50 border border-white/5 rounded-2xl p-8 hover:bg-zinc-800/50 transition-all cursor-pointer overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600/0 via-purple-600/0 to-purple-600/0 group-hover:from-purple-600/10 group-hover:via-transparent group-hover:to-transparent transition-all duration-500"></div>
-                    <div class="relative flex flex-col md:flex-row justify-between items-center gap-6">
-                        <div class="flex items-center gap-6">
-                            <div class="text-center min-w-[80px]">
-                                <div class="text-3xl font-bold text-purple-400">24</div>
-                                <div class="text-sm text-gray-400 uppercase" data-i18n="month_mar">Mar</div>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold mb-1 group-hover:text-purple-400 transition-colors">New Bop World Tour</h3>
-                                <p class="text-gray-400">Madrid, Barcelona, Valencia • 12 <span data-i18n="cities">ciudades</span></p>
-                            </div>
-                        </div>
-                        <button class="px-6 py-3 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all text-sm uppercase tracking-wider" data-i18n="tickets">
-                            Entradas
-                        </button>
+            <div class="flex flex-col items-center justify-center min-h-[300px]">
+                <div class="text-center">
+                    <div class="mb-8">
+                        <svg class="w-20 h-20 mx-auto text-purple-400/50 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
                     </div>
-                </div>
-
-                <div class="group relative bg-zinc-900/50 border border-white/5 rounded-2xl p-8 hover:bg-zinc-800/50 transition-all cursor-pointer overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-r from-blue-600/0 via-blue-600/0 to-blue-600/0 group-hover:from-blue-600/10 group-hover:via-transparent group-hover:to-transparent transition-all duration-500"></div>
-                    <div class="relative flex flex-col md:flex-row justify-between items-center gap-6">
-                        <div class="flex items-center gap-6">
-                            <div class="text-center min-w-[80px]">
-                                <div class="text-3xl font-bold text-blue-400">15</div>
-                                <div class="text-sm text-gray-400 uppercase" data-i18n="month_apr">Abr</div>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold mb-1 group-hover:text-blue-400 transition-colors">Latin Swing Festival Tour</h3>
-                                <p class="text-gray-400">Primavera Sound, Mad Cool, BBK Live</p>
-                            </div>
-                        </div>
-                        <button class="px-6 py-3 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all text-sm uppercase tracking-wider" data-i18n="tickets">
-                            Entradas
-                        </button>
-                    </div>
-                </div>
-
-                <div class="group relative bg-zinc-900/50 border border-white/5 rounded-2xl p-8 hover:bg-zinc-800/50 transition-all cursor-pointer overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-r from-pink-600/0 via-pink-600/0 to-pink-600/0 group-hover:from-pink-600/10 group-hover:via-transparent group-hover:to-transparent transition-all duration-500"></div>
-                    <div class="relative flex flex-col md:flex-row justify-between items-center gap-6">
-                        <div class="flex items-center gap-6">
-                            <div class="text-center min-w-[80px]">
-                                <div class="text-3xl font-bold text-pink-400">02</div>
-                                <div class="text-sm text-gray-400 uppercase" data-i18n="month_may">May</div>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold mb-1 group-hover:text-pink-400 transition-colors">The Brotherhood Acoustic Sessions</h3>
-                                <p class="text-gray-400"><span data-i18n="national_theaters">Teatros nacionales</span> • <span data-i18n="intimate_tour">Gira íntima</span></p>
-                            </div>
-                        </div>
-                        <button class="px-6 py-3 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all text-sm uppercase tracking-wider" data-i18n="tickets">
-                            Entradas
-                        </button>
+                    <h3 class="text-3xl md:text-4xl font-display font-bold mb-4 gradient-text-accent" data-i18n="tours_prep_title">Próximas fechas en preparación</h3>
+                    <p class="text-gray-400 text-lg max-w-lg mx-auto" data-i18n="tours_prep_desc">Estamos organizando nuevas giras y eventos. Suscríbete a nuestra newsletter para ser el primero en enterarte.</p>
+                    <div class="mt-8 flex justify-center gap-2">
+                        <div class="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style="animation-delay: 0s"></div>
+                        <div class="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                        <div class="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
                     </div>
                 </div>
             </div>
@@ -493,7 +376,6 @@
         <div class="max-w-4xl mx-auto relative z-10">
             <div class="text-center mb-16">
                 <h2 class="text-5xl md:text-6xl font-display font-bold mb-6 gradient-text" data-i18n="contact_title">¿Hablamos?</h2>
-                <p class="text-gray-400 text-lg" data-i18n="contact_subtitle">Estamos buscando el siguiente gran talento. Cuéntanos sobre tu proyecto.</p>
             </div>
 
             <form class="space-y-6" id="contactForm">
@@ -550,15 +432,15 @@
             <div class="text-2xl font-display font-bold tracking-tighter">TIGERNUT</div>
             
             <div class="flex gap-6">
-                <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all">
+                <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all cursor-default" title="Twitter / X">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
-                </a>
-                <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all">
+                </div>
+                <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all cursor-default" title="Instagram">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                </a>
-                <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all">
+                </div>
+                <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all cursor-default" title="YouTube">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
-                </a>
+                </div>
             </div>
             
             <div class="text-gray-500 text-sm">
@@ -593,12 +475,11 @@
     const translations = {
         es: {
             nav_artists: "Artistas",
-            nav_services: "Servicios",
             nav_tours: "Tours",
             nav_contact: "Contacto",
             hero_line1: "GESTIONAMOS",
-            hero_line2: "EL FUTURO",
-            hero_line3: "DE LA MÚSICA",
+            hero_line2: "TALENTO EMERGENTE",
+            hero_line3: "EN LA MÚSICA CREATIVA",
             hero_subtext: "Management integral para artistas visionarios. Conectamos talento excepcional con audiencias globales.",
             hero_cta1: "Descubrir Artistas",
             hero_cta2: "Trabaja con Nosotros",
@@ -611,26 +492,10 @@
             world_tour: "Gira mundial 2024",
             grammy_nom: "Grammy nominada",
             click_presskit: "Click para Press Kit →",
-            services_title: "Servicios<br>Integrales",
-            services_subtitle: "Ofrecemos un ecosistema completo para el desarrollo de carreras artísticas. Desde la estrategia creativa hasta la ejecución logística de tours mundiales.",
-            service1_title: "Management Artístico",
-            service1_desc: "Desarrollo de carrera, negociación de contratos y estrategia a largo plazo.",
-            service2_title: "Booking Global",
-            service2_desc: "Red de contactos internacionales para festivales, venues y eventos corporativos.",
-            service3_title: "Producción de Contenido",
-            service3_desc: "Videos musicales, fotografía de marca y contenido digital estratégico.",
-            shows_produced: "Shows producidos",
-            active_countries: "Países activos",
-            tours_title: "Próximos Tours",
-            month_mar: "Mar",
-            month_apr: "Abr",
-            month_may: "May",
-            cities: "ciudades",
-            national_theaters: "Teatros nacionales",
-            intimate_tour: "Gira íntima",
-            tickets: "Entradas",
+            tours_title: "Tours",
+            tours_prep_title: "Próximas fechas en preparación",
+            tours_prep_desc: "Estamos organizando nuevas giras y eventos. Suscríbete a nuestra newsletter para ser el primero en enterarte.",
             contact_title: "¿Hablamos?",
-            contact_subtitle: "Estamos buscando el siguiente gran talento. Cuéntanos sobre tu proyecto.",
             label_name: "Nombre",
             select_topic: "¿Sobre qué quieres hablar?",
             opt_management: "Management Artístico",
@@ -646,19 +511,17 @@
             press_material: "Material de Prensa",
             presskit_pdf: "Press Kit Completo (PDF)",
             presskit_desc: "Biografía, fotos y logos oficiales",
-            photos_hd: "Fotos en Alta Resolución (ZIP)",
-            photos_desc: "Fotos oficiales para prensa (300dpi)",
             rider: "Rider Técnico (PDF)",
-            rider_desc: "Especificaciones técnicas para venues"
+            rider_desc: "Especificaciones técnicas para venues",
+            video_coming_soon: "Video próximamente"
         },
         en: {
             nav_artists: "Artists",
-            nav_services: "Services",
             nav_tours: "Tours",
             nav_contact: "Contact",
             hero_line1: "WE MANAGE",
-            hero_line2: "THE FUTURE",
-            hero_line3: "OF MUSIC",
+            hero_line2: "EMERGING TALENT",
+            hero_line3: "IN CREATIVE MUSIC",
             hero_subtext: "Comprehensive management for visionary artists. We connect exceptional talent with global audiences.",
             hero_cta1: "Discover Artists",
             hero_cta2: "Work With Us",
@@ -671,26 +534,10 @@
             world_tour: "World Tour 2024",
             grammy_nom: "Grammy nominated",
             click_presskit: "Click for Press Kit →",
-            services_title: "Comprehensive<br>Services",
-            services_subtitle: "We offer a complete ecosystem for artistic career development. From creative strategy to the logistical execution of world tours.",
-            service1_title: "Artist Management",
-            service1_desc: "Career development, contract negotiation and long-term strategy.",
-            service2_title: "Global Booking",
-            service2_desc: "International network for festivals, venues and corporate events.",
-            service3_title: "Content Production",
-            service3_desc: "Music videos, brand photography and strategic digital content.",
-            shows_produced: "Shows produced",
-            active_countries: "Active countries",
-            tours_title: "Upcoming Tours",
-            month_mar: "Mar",
-            month_apr: "Apr",
-            month_may: "May",
-            cities: "cities",
-            national_theaters: "National theaters",
-            intimate_tour: "Intimate tour",
-            tickets: "Tickets",
+            tours_title: "Tours",
+            tours_prep_title: "Upcoming dates in preparation",
+            tours_prep_desc: "We are organizing new tours and events. Subscribe to our newsletter to be the first to know.",
             contact_title: "Let's Talk?",
-            contact_subtitle: "We're looking for the next big talent. Tell us about your project.",
             label_name: "Name",
             select_topic: "What would you like to talk about?",
             opt_management: "Artist Management",
@@ -706,10 +553,9 @@
             press_material: "Press Material",
             presskit_pdf: "Complete Press Kit (PDF)",
             presskit_desc: "Biography, photos and official logos",
-            photos_hd: "High Resolution Photos (ZIP)",
-            photos_desc: "Official press photos (300dpi)",
             rider: "Technical Rider (PDF)",
-            rider_desc: "Technical specifications for venues"
+            rider_desc: "Technical specifications for venues",
+            video_coming_soon: "Video coming soon"
         }
     };
 
@@ -726,6 +572,14 @@
         document.getElementById('btn-en').classList.toggle('active', lang === 'en');
         document.getElementById('btn-es-mobile').classList.toggle('active', lang === 'es');
         document.getElementById('btn-en-mobile').classList.toggle('active', lang === 'en');
+        
+        // Sincronizar botones del hero
+        const heroBtnEs = document.getElementById('btn-hero-es');
+        const heroBtnEn = document.getElementById('btn-hero-en');
+        if (heroBtnEs && heroBtnEn) {
+            heroBtnEs.classList.toggle('active', lang === 'es');
+            heroBtnEn.classList.toggle('active', lang === 'en');
+        }
         
         // Actualizar textos
         const texts = translations[lang];
@@ -762,9 +616,9 @@
             bio_en: 'New Bop is a straight-ahead jazz quintet where world-class musicians come together to offer a high-voltage intellectual and emotional experience, ideal for programming that seeks artistic depth, sonic evolution, and impeccable execution',
             foto: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/NEW%20BOP_LOGO.PNG',
             pressKit: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/New%20Bop%20Media%20Kit.pdf',
-            fotosHD: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/fotos-neon-pulse.zip',
             rider: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/rider-neon-pulse.pdf',
-            email: 'booking@tigernutproductions.com',
+            video: '', // Sin video aún - añadir URL raw.githubusercontent.com cuando esté disponible
+            email: 'info@tigernutproductions.com',
             telefono: '+34 123 456 789'
         },
         'Latin Swing': {
@@ -774,9 +628,9 @@
             bio_en: 'Latin Swing is a Latin jazz sextet formed by international musicians that combines the vibrant energy of the Caribbean with the elegance and sophistication of contemporary jazz, ensuring good vibes all around',
             foto: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/latin%20swing%20logo1_v-n.png',
             pressKit: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/Latinswing%20PMK.pdf',
-            fotosHD: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/fotos-the-midnight.zip',
             rider: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/rider-the-midnight.pdf',
-            email: 'booking@tigernutproductions.com',
+            video: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/teaser_latinswing.mp4',
+            email: 'info@tigernutproductions.com',
             telefono: '+34 123 456 789'
         },
         'The Brotherhood': {
@@ -786,9 +640,9 @@
             bio_en: 'The Brotherhood is a flexible formation of elegant and subtle jazz that adapts to the needs of your event, completing it with sonic brushstrokes that will take it to another level',
             foto: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/Bortherhood%20logo.png',
             pressKit: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/Latinswing%20PMK.pdf',
-            fotosHD: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/fotos-luna-vega.zip',
             rider: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/rider-luna-vega.pdf',
-            email: 'booking@tigernutproductions.com',
+            video: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/teaser_brotherhood.mp4',
+            email: 'info@tigernutproductions.com',
             telefono: '+34 123 456 789'
         }
     };
@@ -802,6 +656,32 @@
         const texts = translations[lang];
         
         const content = document.getElementById('modalContent');
+        
+        // Video HTML (solo si hay video disponible)
+        const videoHTML = artist.video ? `
+            <div class="mb-8">
+                <h3 class="text-xl font-bold mb-4 text-purple-400">Video Teaser</h3>
+                <div class="relative rounded-xl overflow-hidden bg-black border border-white/10">
+                    <video controls class="w-full aspect-video" poster="${artist.foto}">
+                        <source src="${artist.video}" type="video/mp4">
+                        <p class="text-gray-400 p-4 text-center">Tu navegador no soporta video HTML5.</p>
+                    </video>
+                </div>
+            </div>
+        ` : `
+            <div class="mb-8">
+                <h3 class="text-xl font-bold mb-4 text-purple-400">Video Teaser</h3>
+                <div class="relative rounded-xl overflow-hidden bg-black border border-white/10 aspect-video flex items-center justify-center">
+                    <div class="text-center">
+                        <svg class="w-16 h-16 mx-auto text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                        </svg>
+                        <p class="text-gray-500">Video próximamente</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        
         content.innerHTML = `
             <div class="grid md:grid-cols-2 gap-8">
                 <div>
@@ -829,9 +709,11 @@
                     <h3 class="text-xl font-bold mb-4 text-purple-400">${texts.bio}</h3>
                     <p class="text-gray-300 leading-relaxed mb-8">${bio}</p>
                     
+                    ${videoHTML}
+                    
                     <h3 class="text-xl font-bold mb-4 text-purple-400">${texts.press_material}</h3>
                     <div class="space-y-3">
-                        <a href="${artist.pressKit}" download class="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
+                        <a href="${artist.pressKit}" target="_blank" class="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
                             <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
                                 <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
@@ -843,19 +725,7 @@
                             </div>
                         </a>
                         
-                        <a href="${artist.fotosHD}" download class="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
-                            <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="font-bold">${texts.photos_hd}</div>
-                                <div class="text-sm text-gray-400">${texts.photos_desc}</div>
-                            </div>
-                        </a>
-                        
-                        <a href="${artist.rider}" download class="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
+                        <a href="${artist.rider}" target="_blank" class="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
                             <div class="w-12 h-12 bg-pink-500/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
                                 <svg class="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
@@ -942,6 +812,14 @@
             ease: "power2.out"
         });
 
+        gsap.to("#heroLangSwitcher", {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: 1.2,
+            ease: "power2.out"
+        });
+
         gsap.utils.toArray('.artist-card').forEach((card, i) => {
             gsap.from(card, {
                 scrollTrigger: {
@@ -999,9 +877,44 @@
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             
+            // ============================================================
+            // EMAILJS - CONFIGURAR AQUÍ:
+            // 1. Regístrate en https://www.emailjs.com/
+            // 2. Crea un servicio de email (Gmail, Outlook, etc.)
+            // 3. Crea una plantilla con las variables: {{name}}, {{email}}, {{subject}}, {{message}}
+            // 4. Reemplaza los valores de abajo con tu Service ID, Template ID y Public Key
+            // ============================================================
+            
+            const emailjsConfig = {
+                serviceId: 'TU_SERVICE_ID',      // Ej: 'service_abc123'
+                templateId: 'TU_TEMPLATE_ID',    // Ej: 'template_xyz789'
+                publicKey: 'TU_PUBLIC_KEY'       // Ej: 'user_1234567890abcdef'
+            };
+            
+            // Descomenta las líneas de abajo cuando configures EmailJS:
+            //
+            // emailjs.init(emailjsConfig.publicKey);
+            // emailjs.send(emailjsConfig.serviceId, emailjsConfig.templateId, {
+            //     name: document.getElementById('name').value,
+            //     email: document.getElementById('email').value,
+            //     subject: document.getElementById('subject').value,
+            //     message: document.getElementById('message').value
+            // }).then(() => {
+            //     form.style.display = 'none';
+            //     successMessage.classList.remove('hidden');
+            //     setTimeout(() => {
+            //         form.reset();
+            //         form.style.display = 'block';
+            //         successMessage.classList.add('hidden');
+            //     }, 3000);
+            // }).catch((error) => {
+            //     console.error('EmailJS error:', error);
+            //     alert('Error al enviar. Por favor, contacta directamente a info@tigernutproductions.com');
+            // });
+            
+            // Mientras tanto, mostramos el mensaje de éxito simulado:
             form.style.display = 'none';
             successMessage.classList.remove('hidden');
-            
             setTimeout(() => {
                 form.reset();
                 form.style.display = 'block';
