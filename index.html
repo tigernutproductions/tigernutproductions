@@ -623,7 +623,7 @@
             foto: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/NEW%20BOP_LOGO.PNG',
             pressKit: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/New%20Bop%20Media%20Kit.pdf',
             rider: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/rider-neon-pulse.pdf',
-            video: '', // Sin video aún - añadir URL raw.githubusercontent.com cuando esté disponible
+            video: 'https://www.youtube.com/embed/sNRjmu35dVk'
             email: 'info@tigernutproductions.com',
             telefono: '+34 123 456 789'
         },
@@ -635,7 +635,7 @@
             foto: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/latin%20swing%20logo1_v-n.png',
             pressKit: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/Latinswing%20PMK.pdf',
             rider: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/rider-the-midnight.pdf',
-            video: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/teaser_latinswing.mp4',
+            video: 'https://www.youtube.com/embed/pVmQMVC-Lcw',
             email: 'info@tigernutproductions.com',
             telefono: '+34 123 456 789'
         },
@@ -647,7 +647,7 @@
             foto: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/Bortherhood%20logo.png',
             pressKit: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/Latinswing%20PMK.pdf',
             rider: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/rider-luna-vega.pdf',
-            video: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/teaser_brotherhood.mp4',
+            video: 'https://www.youtube.com/embed/drhCUwk4s28',
             email: 'info@tigernutproductions.com',
             telefono: '+34 123 456 789'
         }
@@ -663,15 +663,19 @@
         
         const content = document.getElementById('modalContent');
         
-        // Video HTML (solo si hay video disponible)
+        // Video HTML (iframe de YouTube)
         const videoHTML = artist.video ? `
             <div class="mb-8">
                 <h3 class="text-xl font-bold mb-4 text-purple-400">Video Teaser</h3>
-                <div class="relative rounded-xl overflow-hidden bg-black border border-white/10">
-                    <video controls class="w-full aspect-video" poster="${artist.foto}">
-                        <source src="${artist.video}" type="video/mp4">
-                        <p class="text-gray-400 p-4 text-center">Tu navegador no soporta video HTML5.</p>
-                    </video>
+                <div class="relative rounded-xl overflow-hidden bg-black border border-white/10" style="padding-bottom: 56.25%; height: 0;">
+                    <iframe 
+                        src="${artist.video}" 
+                        title="Video Teaser ${artist.nombre}"
+                        class="absolute top-0 left-0 w-full h-full"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
             </div>
         ` : `
