@@ -306,9 +306,23 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="artist-card group relative h-[500px] rounded-2xl overflow-hidden cursor-pointer" onclick="openModal('New Bop')">
+                <div class="artist-card group relative h-[500px] rounded-2xl overflow-hidden cursor-pointer" onclick="openModal('José Quevedo Bolita Big Band')">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
-                    <img src="https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/NEW%20BOP_LOGO.PNG" alt="New Bop" class="artist-image absolute inset-0 w-full h-full object-contain bg-black transition-transform duration-700">
+                    <img src="https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/Captura%20de%20pantalla%202026-07-16%20030505.png" alt="José Quevedo Bolita Big Band" class="artist-image absolute inset-0 w-full h-full object-contain bg-black transition-transform duration-700">
+                    <div class="absolute bottom-0 left-0 p-8 z-20 w-full">
+                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <span class="text-purple-400 text-sm uppercase tracking-widest mb-2 block">Big Band</span>
+                            <h3 class="text-3xl font-display font-bold mb-2">José Quevedo "Bolita" Big Band</h3>
+                            <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                                <span class="text-purple-400" data-i18n="click_presskit">Click para Press Kit →</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+<div class="artist-card group relative h-[500px] rounded-2xl overflow-hidden cursor-pointer" onclick="openModal('New Bop')">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
+                    <img src="https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/NEW%20BOP_LOGO_N_T.png" alt="New Bop" class="artist-image absolute inset-0 w-full h-full object-contain bg-black transition-transform duration-700">
                     <div class="absolute bottom-0 left-0 p-8 z-20 w-full">
                         <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                             <span class="text-purple-400 text-sm uppercase tracking-widest mb-2 block">Straight Ahead</span>
@@ -320,7 +334,7 @@
                     </div>
                 </div>
 
-                <div class="artist-card group relative h-[500px] rounded-2xl overflow-hidden cursor-pointer" onclick="openModal('Latin Swing')">
+<div class="artist-card group relative h-[500px] rounded-2xl overflow-hidden cursor-pointer" onclick="openModal('Latin Swing')">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
                     <img src="https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/latin%20swing%20logo1_v-n.png" alt="Latin Swing" class="artist-image absolute inset-0 w-full h-full object-contain bg-black transition-transform duration-700">
                     <div class="absolute bottom-0 left-0 p-8 z-20 w-full">
@@ -334,7 +348,7 @@
                     </div>
                 </div>
 
-                <div class="artist-card group relative h-[500px] rounded-2xl overflow-hidden cursor-pointer" onclick="openModal('The Brotherhood')">
+<div class="artist-card group relative h-[500px] rounded-2xl overflow-hidden cursor-pointer" onclick="openModal('The Brotherhood')">
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
                     <img src="https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/Bortherhood%20logo.png" alt="The Brotherhood" class="artist-image absolute inset-0 w-full h-full object-contain bg-black transition-transform duration-700">
                     <div class="absolute bottom-0 left-0 p-8 z-20 w-full">
@@ -343,20 +357,6 @@
                             <h3 class="text-3xl font-display font-bold mb-2">The Brotherhood</h3>
                             <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
                                 <span class="text-pink-400" data-i18n="click_presskit">Click para Press Kit →</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="artist-card group relative h-[500px] rounded-2xl overflow-hidden cursor-pointer" onclick="openModal('José Quevedo Bolita Big Band')">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
-                    <img src="https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/Captura%20de%20pantalla%202026-07-16%20030505.png" alt="José Quevedo Bolita Big Band" class="artist-image absolute inset-0 w-full h-full object-contain bg-black transition-transform duration-700">
-                    <div class="absolute bottom-0 left-0 p-8 z-20 w-full">
-                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            <span class="text-purple-400 text-sm uppercase tracking-widest mb-2 block">Big Band</span>
-                            <h3 class="text-3xl font-display font-bold mb-2">José Quevedo "Bolita" Big Band</h3>
-                            <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                                <span class="text-purple-400" data-i18n="click_presskit">Click para Press Kit →</span>
                             </p>
                         </div>
                     </div>
@@ -630,42 +630,6 @@
     <script>
     // Datos de los press kits
     const pressKits = {
-        'New Bop': {
-            nombre: 'New Bop',
-            genero: 'Straight Ahead',
-            bio_es: 'New Bop es un quinteto de jazz straight ahead donde músicos de talla mundial se juntan para ofrecer una experiencia de alto voltaje intelectual y emocional, ideal para programaciones que busquen profundidad artística, evolución sonora y una ejecución impecable',
-            bio_en: 'New Bop is a straight-ahead jazz quintet where world-class musicians come together to offer a high-voltage intellectual and emotional experience, ideal for programming that seeks artistic depth, sonic evolution, and impeccable execution',
-            foto: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/NEW%20BOP_LOGO.PNG',
-            pressKit: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/New%20Bop%20Media%20Kit.pdf',
-            rider: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/rider-neon-pulse.pdf',
-            video: 'https://www.youtube.com/embed/sNRjmu35dVk?feature=oembed',
-            email: 'info@tigernutproductions.com',
-            telefono: '+34 123 456 789'
-        },
-        'Latin Swing': {
-            nombre: 'Latin Swing',
-            genero: 'Latin Jazz',
-            bio_es: 'Latinswing es un sexteto de jazz latino formado por músicos internacionales que conjuga la energía vibrante del caribe con la elegancia y sofisticación del jazz contemporáneo con el que la buena vibra está asegurada',
-            bio_en: 'Latin Swing is a Latin jazz sextet formed by international musicians that combines the vibrant energy of the Caribbean with the elegance and sophistication of contemporary jazz, ensuring good vibes all around',
-            foto: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/latin%20swing%20logo1_v-n.png',
-            pressKit: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/Latinswing%20PMK.pdf',
-            rider: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/rider-the-midnight.pdf',
-            video: 'https://www.youtube.com/embed/pVmQMVC-Lcw?feature=oembed',
-            email: 'info@tigernutproductions.com',
-            telefono: '+34 123 456 789'
-        },
-        'The Brotherhood': {
-            nombre: 'The Brotherhood',
-            genero: 'Events',
-            bio_es: 'The Brotherhood es una formación cambiante de jazz elegante y sutil que se adapta a las necesidades de su evento completándolo con las pinceladas sonoras que lo llevarán a otro nivel',
-            bio_en: 'The Brotherhood is a flexible formation of elegant and subtle jazz that adapts to the needs of your event, completing it with sonic brushstrokes that will take it to another level',
-            foto: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/Bortherhood%20logo.png',
-            pressKit: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/Latinswing%20PMK.pdf',
-            rider: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/rider-luna-vega.pdf',
-            video: 'https://www.youtube.com/embed/drhCUwk4s28?feature=oembed',
-            email: 'info@tigernutproductions.com',
-            telefono: '+34 123 456 789'
-        },
         'José Quevedo Bolita Big Band': {
             nombre: 'José Quevedo "Bolita" Big Band',
             genero: 'Big Band',
@@ -676,7 +640,43 @@
             rider: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/rider-luna-vega.pdf',
             video: 'https://player.vimeo.com/video/296460990',
             email: 'info@tigernutproductions.com',
-            telefono: '+34 123 456 789'
+            telefono: '+34 649 657 329'
+        },
+'New Bop': {
+            nombre: 'New Bop',
+            genero: 'Straight Ahead',
+            bio_es: 'New Bop es un quinteto de jazz straight ahead donde músicos de talla mundial se juntan para ofrecer una experiencia de alto voltaje intelectual y emocional, ideal para programaciones que busquen profundidad artística, evolución sonora y una ejecución impecable',
+            bio_en: 'New Bop is a straight-ahead jazz quintet where world-class musicians come together to offer a high-voltage intellectual and emotional experience, ideal for programming that seeks artistic depth, sonic evolution, and impeccable execution',
+            foto: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/NEW%20BOP_LOGO_N_T.png',
+            pressKit: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/New%20Bop%20Media%20Kit.pdf',
+            rider: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/rider-neon-pulse.pdf',
+            video: 'https://www.youtube.com/embed/sNRjmu35dVk?feature=oembed',
+            email: 'info@tigernutproductions.com',
+            telefono: '+34 649 657 329'
+        },
+'Latin Swing': {
+            nombre: 'Latin Swing',
+            genero: 'Latin Jazz',
+            bio_es: 'Latinswing es un sexteto de jazz latino formado por músicos internacionales que conjuga la energía vibrante del caribe con la elegancia y sofisticación del jazz contemporáneo con el que la buena vibra está asegurada',
+            bio_en: 'Latin Swing is a Latin jazz sextet formed by international musicians that combines the vibrant energy of the Caribbean with the elegance and sophistication of contemporary jazz, ensuring good vibes all around',
+            foto: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/latin%20swing%20logo1_v-n.png',
+            pressKit: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/Latinswing%20PMK.pdf',
+            rider: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/rider-the-midnight.pdf',
+            video: 'https://www.youtube.com/embed/pVmQMVC-Lcw?feature=oembed',
+            email: 'info@tigernutproductions.com',
+            telefono: '+34 649 657 329'
+        },
+'The Brotherhood': {
+            nombre: 'The Brotherhood',
+            genero: 'Events',
+            bio_es: 'The Brotherhood es una formación cambiante de jazz elegante y sutil que se adapta a las necesidades de su evento completándolo con las pinceladas sonoras que lo llevarán a otro nivel',
+            bio_en: 'The Brotherhood is a flexible formation of elegant and subtle jazz that adapts to the needs of your event, completing it with sonic brushstrokes that will take it to another level',
+            foto: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/Bortherhood%20logo.png',
+            pressKit: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/Latinswing%20PMK.pdf',
+            rider: 'https://raw.githubusercontent.com/tigernutproductions/tigernutproductions/main/rider-luna-vega.pdf',
+            video: 'https://www.youtube.com/embed/drhCUwk4s28?feature=oembed',
+            email: 'info@tigernutproductions.com',
+            telefono: '+34 649 657 329'
         }
     };
 
